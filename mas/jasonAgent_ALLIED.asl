@@ -149,11 +149,18 @@ if (Length > 0) {
       .println("jajaxd");
 
     } 
+
+    //calculo de mi posicion
     ?my_position(X, Y, Z);
+    .println("ESTOY EN LA POSICION: ", X,";", Y,";",Z)
+
+    //calculo de la distancia a la bandera
     ?objective_position(FlagX, FlagY, FlagZ);
     !distance( pos(X, Y, Z), pos(FlagX, FlagY, FlagZ));
     ?distance(D);
     .println("DISTANCIA A LA BANDERA: ", D);.
+
+    //calculo de la distancia hasta la base
 
 
 

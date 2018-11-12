@@ -1,5 +1,7 @@
 debug(3).
 
+base(0,0,0).
+
 // Name of the manager
 manager("Manager").
 
@@ -146,7 +148,7 @@ if (Length > 0) {
 +!perform_look_action
    <- ?debug(Mode); if (Mode<=1) {  
 
-      .println("jajaxd");
+      .println("");
 
     } 
 
@@ -161,6 +163,11 @@ if (Length > 0) {
     .println("DISTANCIA A LA BANDERA: ", D);.
 
     //calculo de la distancia hasta la base
+    ?base(BX, BY, BZ);
+    !distance( pos(X, Y, Z), pos(BX, BY, BZ));
+    ?distance(D2);
+    .println("DISTANCIA A LA BASE: ", D2);.
+
 
 
 
@@ -332,7 +339,10 @@ if (Length > 0) {
 /////////////////////////////////
 
 +!init
-   <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR init GOES HERE.")}.  
+   <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR init GOES HERE.")}
+    ?my_position(X, Y, Z);
+    -+base(X, Y, Z);
+    .  
 
 
 

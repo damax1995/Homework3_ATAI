@@ -152,7 +152,7 @@ if (Length > 0) {
 
     //calculo de mi posicion
     ?my_position(X, Y, Z);
-    .println("ESTOY EN LA POSICION: ", X,";", Y,";",Z)
+    .println("ESTOY EN LA POSICION: ", X,";", Y,";",Z);
 
     //calculo de la distancia a la bandera
     ?objective_position(FlagX, FlagY, FlagZ);

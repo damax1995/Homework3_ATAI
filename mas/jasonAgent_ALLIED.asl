@@ -1,7 +1,5 @@
 debug(3).
 
-base(0,0,0).
-
 // Name of the manager
 manager("Manager").
 
@@ -157,20 +155,16 @@ if (Length > 0) {
     .println("ESTOY EN LA POSICION: ", X," ; ", Y," ; ",Z);
 
     //calculo de la distancia a la bandera
-    ?objective_position(FlagX, FlagY, FlagZ);
+    ?flag(FlagX, FlagY, FlagZ);
     !distance( pos(X, Y, Z), pos(FlagX, FlagY, FlagZ));
     ?distance(D);
-    .println("DISTANCIA A LA BANDERA: ", D);.
+    .println("DISTANCIA A LA BANDERA: ", D);
 
     //calculo de la distancia hasta la base
     ?base(BX, BY, BZ);
     !distance( pos(X, Y, Z), pos(BX, BY, BZ));
     ?distance(D2);
     .println("DISTANCIA A LA BASE: ", D2);.
-
-
-
-
 /**
 * Action to do if this agent cannot shoot.
 * 
@@ -340,9 +334,10 @@ if (Length > 0) {
 
 +!init
    <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR init GOES HERE.")}
-    ?my_position(X, Y, Z);
-    -+base(X, Y, Z);
-    .  
+   ?my_position(X, Y, Z);
+    +base(X, Y, Z);
+    ?objective_position(FlagX, FlagY, FlagZ);
+    +flag(FlagX,FlagY,FlagZ);.
 
 
 

@@ -9,7 +9,7 @@ team("AXIS").
 type("CLASS_SOLDIER").
 
 // Value of "closeness" to the Flag, when patrolling in defense
-patrollingRadius(64).
+patrollingRadius(54789).
 
 
 
@@ -186,7 +186,7 @@ patrollingRadius(64).
         +task_priority("TASK_GET_OBJECTIVE",1000);
         +task_priority("TASK_ATTACK", 1000);
         +task_priority("TASK_RUN_AWAY", 1500);
-        +task_priority("TASK_GOTO_POSITION", 750);
+        +task_priority("TASK_GOTO_POSITION", 2750);
         +task_priority("TASK_PATROLLING", 500);
         +task_priority("TASK_WALKING_PATH", 750).   
 
@@ -285,6 +285,32 @@ patrollingRadius(64).
        }
        .
        
++!go_to_pos
+  <-
+    .random(N);
+    ?my_position(X, Y, Z);
+
+    if(N<(1/8)){
+      //-+my_position(X+1, Y, Z+1);
+      update_destination(X+1, Y, Z+1);
+    }else if(N > (1/8) && N < (2/8)){
+      -+my_position(X+1, Y, Z);
+    }else if(N > (2/8) && N < (3/8)){
+      -+my_position(X+1, Y, Z-1);
+    }else if(N > (3/8) && N < (4/8)){
+      -+my_position(X, Y, Z-1);
+    }else if(N > (4/8) && N < (5/8)){
+      -+my_position(X-1, Y, Z-1);
+    }else if(N > (5/8) && N < (6/8)){
+      -+my_position(X-1, Y, Z);
+    }else if(N > (6/8) && N < (7/8)){
+      -+my_position(X-1, Y, Z+1);
+    }else if(N > (7/8) && N < (8/8)){
+      -+my_position(X, Y, Z+1);
+    }
+    .
+
+
 /////////////////////////////////
 //  ANSWER_ACTION_CFM_OR_CFA
 /////////////////////////////////

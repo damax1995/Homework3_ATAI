@@ -17,7 +17,7 @@ medicAction(on).
 fieldopsAction(on).
 
 // Indicates if agent has the flag or not.
-// objectivePackTaken(on).
+objectivePackTaken(on).
 
 // Initial state in Finite State Machine.
 state(standing).

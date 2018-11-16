@@ -146,8 +146,12 @@ patrollingRadius(54789).
  * <em> It's very useful to overload this plan. </em>
  *
  */
-+!perform_look_action .
-/// <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR PERFORM_LOOK_ACTION GOES HERE.") }.
++!perform_look_action 
+    <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR PERFORM_LOOK_ACTION GOES HERE.") }.
+  
+    -+go_to_pos
+
+    .
 
 /**
  * Action to do if this agent cannot shoot.
@@ -288,28 +292,49 @@ patrollingRadius(54789).
 +!go_to_pos
   <-
     .random(N);
+    .println("EL RANDOM ES  ----->   ",N);
     ?my_position(X, Y, Z);
 
     if(N<(1/8)){
-      //-+my_position(X+1, Y, Z+1);
-      update_destination(X+1, Y, Z+1);
-    }else if(N > (1/8) && N < (2/8)){
-      -+my_position(X+1, Y, Z);
-    }else if(N > (2/8) && N < (3/8)){
-      -+my_position(X+1, Y, Z-1);
-    }else if(N > (3/8) && N < (4/8)){
-      -+my_position(X, Y, Z-1);
-    }else if(N > (4/8) && N < (5/8)){
-      -+my_position(X-1, Y, Z-1);
-    }else if(N > (5/8) && N < (6/8)){
-      -+my_position(X-1, Y, Z);
-    }else if(N > (6/8) && N < (7/8)){
-      -+my_position(X-1, Y, Z+1);
-    }else if(N > (7/8) && N < (8/8)){
-      -+my_position(X, Y, Z+1);
+      update_destination(X+0.5, Y, Z+0.5);
     }
-    .
+    else{
+        if ( (N > (1/8)) & (N < (2/8)) ) {
+          update_destination(X+0.5, Y, Z);
+        }
+        else{
+            if(N > (2/8) & N < (3/8)){
+              update_destination(X+0.5, Y, Z-0.5);
+            }
+            else{
+                if(N > (3/8) & N < (4/8)){
+                  update_destination(X, Y, Z-0.5);
+                }
+                else{
+                    if(N > (4/8) & N < (5/8)){
+                      update_destination(X-0.5, Y, Z-0.5);
+                    }
+                    else{
+                        if(N > (5/8) & N < (6/8)){
+                          update_destination(X-0.5, Y, Z);
+                        }
+                        else{
+                            if(N > (6/8) & N < (7/8)){
+                              update_destination(X-0.5, Y, Z+0.5);
+                            }
+                            else{
+                                if(N > (7/8) & N < (8/8)){
+                                  update_destination(X, Y, Z+0.5);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
+    .
 
 /////////////////////////////////
 //  ANSWER_ACTION_CFM_OR_CFA

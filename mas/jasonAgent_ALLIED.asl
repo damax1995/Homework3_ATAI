@@ -159,7 +159,6 @@ if (Length > 0) {
     !distance( pos(X, Y, Z), pos(FlagX, FlagY, FlagZ));
     ?distance(D);
     ?objectivePackTaken(K);
-    .println("hii im K: ",K);
     if(K == off){
       .println("DISTANCIA A LA BANDERA: ", D);
     }

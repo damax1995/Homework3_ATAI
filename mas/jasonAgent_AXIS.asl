@@ -156,42 +156,42 @@ patrollingRadius(64).
     .my_name(MyName);
 
     if(N<(1/8)){
-      //update_destination(X+0.5, Y, Z+0.5);
+      update_destination(X+5, Y, Z+5);
       !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X+5,Y,Z+5), ""));
     }
     else{
         if ( (N > (1/8)) & (N < (2/8)) ) {
-          //update_destination(X+0.5, Y, Z);
+          update_destination(X+5, Y, Z);
           !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X+5,Y,Z), ""));
         }
         else{
             if(N > (2/8) & N < (3/8)){
-              //update_destination(X+0.5, Y, Z-0.5);
+              update_destination(X+5, Y, Z-5);
               !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X+5,Y,Z-5), ""));
             }
             else{
                 if(N > (3/8) & N < (4/8)){
-                  //update_destination(X, Y, Z-0.5);
+                  update_destination(X, Y, Z-5);
                   !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X,Y,Z-5), ""));
                 }
                 else{
                     if(N > (4/8) & N < (5/8)){
-                      //update_destination(X-0.5, Y, Z-0.5);
+                      update_destination(X-5, Y, Z-5);
                       !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X-5,Y,Z-5), ""));
                     }
                     else{
                         if(N > (5/8) & N < (6/8)){
-                          //update_destination(X-0.5, Y, Z);
+                          update_destination(X-5, Y, Z);
                           !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X-5,Y,Z), ""));
                         }
                         else{
                             if(N > (6/8) & N < (7/8)){
-                              //update_destination(X-0.5, Y, Z+0.5);
+                              update_destination(X-5, Y, Z+5);
                               !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X-5,Y,Z+5), ""));
                             }
                             else{
                                 if(N > (7/8) & N < (8/8)){
-                                  //update_destination(X, Y, Z+0.5);
+                                  update_destination(X, Y, Z+5);
                                   !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X+5,Y,Z+5), ""));
                                 }
                             }

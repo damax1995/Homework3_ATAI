@@ -145,8 +145,96 @@ patrollingRadius(64).
  * <em> It's very useful to overload this plan. </em>
  *
  */
-+!perform_look_action .
-/// <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR PERFORM_LOOK_ACTION GOES HERE.") }.
++!perform_look_action 
+  <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR PERFORM_LOOK_ACTION GOES HERE.") }
+
+  .random(N);
+    .println("EL RANDOM ES  ----->   ",N);
+    ?my_position(X, Y, Z);
+
+    .my_name(MyName);
+    .my_team("medic_AXIS",E);
+
+    if(N<(1/8)){
+      update_destination(X+5, Y, Z+5);
+      !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X+5,Y,Z+5), ""));
+
+      .concat("goto(",X+5,", ", Y, ", ", Z+5, ")", Content1);
+      .send_msg_with_conversation_id(E, tell, Content1, "INT");
+      
+    }
+    else{
+        if ( (N > (1/8)) & (N < (2/8)) ) {
+          update_destination(X+5, Y, Z);
+          !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X+5,Y,Z), ""));
+
+          .concat("goto(",X+5,", ", Y, ", ", Z, ")", Content1);
+          .send_msg_with_conversation_id(E, tell, Content1, "INT");
+
+        }
+        else{
+            if(N > (2/8) & N < (3/8)){
+              update_destination(X+5, Y, Z-5);
+              !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X+5,Y,Z-5), ""));
+
+              .concat("goto(",X+5,", ", Y, ", ", Z-5, ")", Content1);
+              .send_msg_with_conversation_id(E, tell, Content1, "INT");
+              
+            }
+            else{
+                if(N > (3/8) & N < (4/8)){
+                  update_destination(X, Y, Z-5);
+                  !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X,Y,Z-5), ""));
+
+                  .concat("goto(",X,", ", Y, ", ", Z-5, ")", Content1);
+                  .send_msg_with_conversation_id(E, tell, Content1, "INT");
+                  
+                }
+                else{
+                    if(N > (4/8) & N < (5/8)){
+                      update_destination(X-5, Y, Z-5);
+                      !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X-5,Y,Z-5), ""));
+
+                      .concat("goto(",X,", ", Y, ", ", Z, ")", Content1);
+                      .send_msg_with_conversation_id(E, tell, Content1, "INT");
+                      
+                    }
+                    else{
+                        if(N > (5/8) & N < (6/8)){
+                          update_destination(X-5, Y, Z);
+                          !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X-5,Y,Z), ""));
+
+                          .concat("goto(",X-5,", ", Y, ", ", Z, ")", Content1);
+                          .send_msg_with_conversation_id(E, tell, Content1, "INT");
+                          
+                        }
+                        else{
+                            if(N > (6/8) & N < (7/8)){
+                              update_destination(X-5, Y, Z+5);
+                              !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X-5,Y,Z+5), ""));
+
+                              .concat("goto(",X-5,", ", Y, ", ", Z+5, ")", Content1);
+                              .send_msg_with_conversation_id(E, tell, Content1, "INT");
+                              
+                            }
+                            else{
+                                if(N > (7/8) & N < (8/8)){
+                                  update_destination(X, Y, Z+5);
+                                  !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X,Y,Z+5), ""));
+
+                                  .concat("goto(",X,", ", Y, ", ", Z+5, ")", Content1);
+                                  .send_msg_with_conversation_id(E, tell, Content1, "INT");
+                                  
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .
 
 /**
  * Action to do if this agent cannot shoot.

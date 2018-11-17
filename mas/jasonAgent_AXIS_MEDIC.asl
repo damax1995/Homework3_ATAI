@@ -145,7 +145,9 @@ patrollingRadius(64).
  *
  */
 +!perform_look_action .
-/// <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR PERFORM_LOOK_ACTION GOES HERE.") }.
+   ///<- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR PERFORM_LOOK_ACTION GOES HERE.") }.
+
+
 
 /**
  * Action to do if this agent cannot shoot.

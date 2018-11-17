@@ -147,7 +147,7 @@ patrollingRadius(64).
  *
  */
 +!perform_look_action 
-    <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR PERFORM_LOOK_ACTION GOES HERE.") }
+   /* <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR PERFORM_LOOK_ACTION GOES HERE.") }
   
     .random(N);
     .println("EL RANDOM ES  ----->   ",N);
@@ -201,7 +201,7 @@ patrollingRadius(64).
             }
         }
     }
-
+      */
     .
 
 /**

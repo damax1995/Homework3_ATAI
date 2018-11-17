@@ -1,4 +1,4 @@
-debug(1).
+debug(3).
 
 // Name of the manager
 manager("Manager").

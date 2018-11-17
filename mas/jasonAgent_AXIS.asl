@@ -9,7 +9,7 @@ team("AXIS").
 type("CLASS_SOLDIER").
 
 // Value of "closeness" to the Flag, when patrolling in defense
-patrollingRadius(54789).
+patrollingRadius(64).
 
 
 
@@ -147,9 +147,60 @@ patrollingRadius(54789).
  *
  */
 +!perform_look_action 
-    <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR PERFORM_LOOK_ACTION GOES HERE.") }.
+    <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR PERFORM_LOOK_ACTION GOES HERE.") }
   
-    +go_to_pos
+    .random(N);
+    .println("EL RANDOM ES  ----->   ",N);
+    ?my_position(X, Y, Z);
+
+    .my_name(MyName);
+
+    if(N<(1/8)){
+      //update_destination(X+0.5, Y, Z+0.5);
+      !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X+5,Y,Z+5), ""));
+    }
+    else{
+        if ( (N > (1/8)) & (N < (2/8)) ) {
+          //update_destination(X+0.5, Y, Z);
+          !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X+5,Y,Z), ""));
+        }
+        else{
+            if(N > (2/8) & N < (3/8)){
+              //update_destination(X+0.5, Y, Z-0.5);
+              !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X+5,Y,Z-5), ""));
+            }
+            else{
+                if(N > (3/8) & N < (4/8)){
+                  //update_destination(X, Y, Z-0.5);
+                  !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X,Y,Z-5), ""));
+                }
+                else{
+                    if(N > (4/8) & N < (5/8)){
+                      //update_destination(X-0.5, Y, Z-0.5);
+                      !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X-5,Y,Z-5), ""));
+                    }
+                    else{
+                        if(N > (5/8) & N < (6/8)){
+                          //update_destination(X-0.5, Y, Z);
+                          !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X-5,Y,Z), ""));
+                        }
+                        else{
+                            if(N > (6/8) & N < (7/8)){
+                              //update_destination(X-0.5, Y, Z+0.5);
+                              !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X-5,Y,Z+5), ""));
+                            }
+                            else{
+                                if(N > (7/8) & N < (8/8)){
+                                  //update_destination(X, Y, Z+0.5);
+                                  !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X+5,Y,Z+5), ""));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     .
 
@@ -289,7 +340,7 @@ patrollingRadius(54789).
        }
        .
        
-+!go_to_pos
+/*+!go_to_pos
   <-
     .random(N);
     .println("EL RANDOM ES  ----->   ",N);
@@ -334,7 +385,7 @@ patrollingRadius(54789).
         }
     }
 
-    .
+    .*/
 
 /////////////////////////////////
 //  ANSWER_ACTION_CFM_OR_CFA

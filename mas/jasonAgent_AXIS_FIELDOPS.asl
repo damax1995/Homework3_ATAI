@@ -154,13 +154,15 @@ patrollingRadius(64).
 
     .my_name(MyName);
     .my_team("medic_AXIS",E);
+    .concat("goto(",X,", ", Y, ", ", Z, ")", Content1);
+    .send_msg_with_conversation_id(E, tell, Content1, "INT");
 
     if(N<(1/8)){
       update_destination(X+5, Y, Z+5);
       !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X+5,Y,Z+5), ""));
 
-      .concat("goto(",X+5,", ", Y, ", ", Z+5, ")", Content1);
-      .send_msg_with_conversation_id(E, tell, Content1, "INT");
+     // .concat("goto(",X+5,", ", Y, ", ", Z+5, ")", Content1);
+     // .send_msg_with_conversation_id(E, tell, Content1, "INT");
       
     }
     else{
@@ -168,8 +170,8 @@ patrollingRadius(64).
           update_destination(X+5, Y, Z);
           !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X+5,Y,Z), ""));
 
-          .concat("goto(",X+5,", ", Y, ", ", Z, ")", Content1);
-          .send_msg_with_conversation_id(E, tell, Content1, "INT");
+       //   .concat("goto(",X+5,", ", Y, ", ", Z, ")", Content1);
+       //   .send_msg_with_conversation_id(E, tell, Content1, "INT");
 
         }
         else{
@@ -177,8 +179,8 @@ patrollingRadius(64).
               update_destination(X+5, Y, Z-5);
               !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X+5,Y,Z-5), ""));
 
-              .concat("goto(",X+5,", ", Y, ", ", Z-5, ")", Content1);
-              .send_msg_with_conversation_id(E, tell, Content1, "INT");
+         //     .concat("goto(",X+5,", ", Y, ", ", Z-5, ")", Content1);
+         //     .send_msg_with_conversation_id(E, tell, Content1, "INT");
               
             }
             else{
@@ -186,8 +188,8 @@ patrollingRadius(64).
                   update_destination(X, Y, Z-5);
                   !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X,Y,Z-5), ""));
 
-                  .concat("goto(",X,", ", Y, ", ", Z-5, ")", Content1);
-                  .send_msg_with_conversation_id(E, tell, Content1, "INT");
+               //   .concat("goto(",X,", ", Y, ", ", Z-5, ")", Content1);
+               //  .send_msg_with_conversation_id(E, tell, Content1, "INT");
                   
                 }
                 else{
@@ -195,8 +197,8 @@ patrollingRadius(64).
                       update_destination(X-5, Y, Z-5);
                       !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X-5,Y,Z-5), ""));
 
-                      .concat("goto(",X,", ", Y, ", ", Z, ")", Content1);
-                      .send_msg_with_conversation_id(E, tell, Content1, "INT");
+                   //   .concat("goto(",X,", ", Y, ", ", Z, ")", Content1);
+                   //   .send_msg_with_conversation_id(E, tell, Content1, "INT");
                       
                     }
                     else{
@@ -204,8 +206,8 @@ patrollingRadius(64).
                           update_destination(X-5, Y, Z);
                           !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X-5,Y,Z), ""));
 
-                          .concat("goto(",X-5,", ", Y, ", ", Z, ")", Content1);
-                          .send_msg_with_conversation_id(E, tell, Content1, "INT");
+                     //     .concat("goto(",X-5,", ", Y, ", ", Z, ")", Content1);
+                      //    .send_msg_with_conversation_id(E, tell, Content1, "INT");
                           
                         }
                         else{
@@ -213,8 +215,8 @@ patrollingRadius(64).
                               update_destination(X-5, Y, Z+5);
                               !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X-5,Y,Z+5), ""));
 
-                              .concat("goto(",X-5,", ", Y, ", ", Z+5, ")", Content1);
-                              .send_msg_with_conversation_id(E, tell, Content1, "INT");
+                        //      .concat("goto(",X-5,", ", Y, ", ", Z+5, ")", Content1);
+                        //      .send_msg_with_conversation_id(E, tell, Content1, "INT");
                               
                             }
                             else{
@@ -222,8 +224,8 @@ patrollingRadius(64).
                                   update_destination(X, Y, Z+5);
                                   !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X,Y,Z+5), ""));
 
-                                  .concat("goto(",X,", ", Y, ", ", Z+5, ")", Content1);
-                                  .send_msg_with_conversation_id(E, tell, Content1, "INT");
+                         //         .concat("goto(",X,", ", Y, ", ", Z+5, ")", Content1);
+                         //         .send_msg_with_conversation_id(E, tell, Content1, "INT");
                                   
                                 }
                             }

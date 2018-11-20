@@ -75,10 +75,8 @@ if (Length > 0) {
 				
                 ?debug(Mode); if (Mode<=2) { .println("Aiming an enemy. . .", MyTeam, " ", .number(MyTeam) , " ", Team, " ", .number(Team)); }
                 +aimed_agent(Object);
-                -+aimed("true");
-                
+                -+aimed("true");   
             }
-            
         }
         
         -+bucle(X+1);
@@ -122,19 +120,24 @@ if (Length > 0) {
     <-  // Aimed agents have the following format:
         // [#, TEAM, TYPE, ANGLE, DISTANCE, HEALTH, POSITION ]
         ?aimed_agent(AimedAgent);
+        .my_team("fieldops_ALLIED", A);
+        .nth(0, A, AgA);
         ?debug(Mode); if (Mode<=1) { .println("AimedAgent ", AimedAgent); }
         .nth(1, AimedAgent, AimedAgentTeam);
         ?debug(Mode); if (Mode<=2) { .println("BAJO EL PUNTO DE MIRA TENGO A ALGUIEN DEL EQUIPO ", AimedAgentTeam);             }
         ?my_formattedTeam(MyTeam);
-
+        ?my_shot_threshold(ShotThreshold);
 
         if (AimedAgentTeam == 200) {
-    
                 .nth(6, AimedAgent, NewDestination);
                 ?debug(Mode); if (Mode<=1) { .println("NUEVO DESTINO DEBERIA SER: ", NewDestination); }
           
+            }else{
+              if(AimedAgent == AgA){
+                +!shot(ShotThreshold)
+              }
             }
- .
+.
 
 /**
 * Action to do when the agent is looking at.
@@ -167,7 +170,7 @@ if (Length > 0) {
      * 
      * <em> It's very useful to overload this plan. </em>
      * 
-     */
+     */ 
 +!perform_injury_action .
     ///<- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR PERFORM_INJURY_ACTION GOES HERE.") }. 
         
@@ -175,15 +178,16 @@ if (Length > 0) {
 /////////////////////////////////
 //  SETUP PRIORITIES
 /////////////////////////////////
-/**  You can change initial priorities if you want to change the behaviour of each agent  **/+!setup_priorities
+/**  You can change initial priorities if you want to change the behaviour of each agent  **/
++!setup_priorities
     <-  +task_priority("TASK_NONE",0);
         +task_priority("TASK_GIVE_MEDICPAKS", 0);
         +task_priority("TASK_GIVE_AMMOPAKS", 2000);
         +task_priority("TASK_GIVE_BACKUP", 0);
         +task_priority("TASK_GET_OBJECTIVE",1000);
-        +task_priority("TASK_ATTACK", 1000);
+        +task_priority("TASK_ATTACK", 3000);
         +task_priority("TASK_RUN_AWAY", 1500);
-        +task_priority("TASK_GOTO_POSITION", 750);
+        +task_priority("TASK_GOTO_POSITION", 2750);
         +task_priority("TASK_PATROLLING", 500);
         +task_priority("TASK_WALKING_PATH", 1750).   
 
@@ -283,6 +287,14 @@ if (Length > 0) {
 
        }
        .
+
++goto(Xag,Yag,Zag)[source(A)] 
+  <-
+  .println("Recibido mensaje goto de ", A);
+  .my_name(MyName);
+  !add_task(task("TASK_GOTO_POSITION",A,pos(Xag,Yag,Zag),""));
+  -+state(standing);
+  -goto(_,_,_).
        
 /////////////////////////////////
 //  ANSWER_ACTION_CFM_OR_CFA

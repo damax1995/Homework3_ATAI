@@ -1,4 +1,4 @@
-debug(3).
+debug(2).
 
 // Name of the manager
 manager("Manager").
@@ -9,7 +9,7 @@ team("AXIS").
 type("CLASS_FIELDOPS").
 
 // Value of "closeness" to the Flag, when patrolling in defense
-patrollingRadius(64).
+patrollingRadius(300).
 
 
 
@@ -148,16 +148,36 @@ patrollingRadius(64).
 +!perform_look_action 
   <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR PERFORM_LOOK_ACTION GOES HERE.") }
 
-  .random(N);
-    .println("EL RANDOM ES  ----->   ",N);
     ?my_position(X, Y, Z);
 
     .my_name(MyName);
     .my_team("medic_AXIS",E);
+    .nth(0, E, AgE);
     .concat("goto(",X,", ", Y, ", ", Z, ")", Content1);
-    .send_msg_with_conversation_id(E, tell, Content1, "INT");
+    .send_msg_with_conversation_id(AgE, tell, Content1, "INT");
 
-    if(N<(1/8)){
+   /* +position(invalid);
+        while (position(invalid)) {
+            -position(invalid);
+            .random(X2);
+            X2= X2 - 0.5;
+            NewObjectiveX = X + X2 * 5;
+            .random(Z2);
+            Z2= Z2 - 0.5;
+            NewObjectiveZ = Z + Z2 * 5;
+            ?debug(Mode); if (Mode<=1) { .println("AXIS_FSM: New check position [", NewObjectiveX,", ", ObjectiveY, ", ", NewObjectiveZ,"] position."); }
+          check_position(pos(NewObjectiveX, Y, NewObjectiveZ));
+            ?position(P);
+            ?debug(Mode); if (Mode<=1) { .println("AXIS_FSM: position is :", P); }
+            -+newPos(NewObjectiveX, NewObjectiveZ);
+            }
+        ?newPos(NewObjectiveX, NewObjectiveZ);
+        update_destination(NewObjectiveX,Y,NewObjectiveZ);
+        !add_task(task(8000, "TASK_GOTO_POSITION", MyName, pos(NewObjectiveX, Y, NewObjectiveZ), ""));
+        -+state(standing);
+        -position(_);*/
+
+      /* if(N<(1/8)){
       update_destination(X+5, Y, Z+5);
       !add_task(task(4000, "TASK_GOTO_POSITION",MyName,pos(X+5,Y,Z+5), ""));
 
@@ -234,8 +254,7 @@ patrollingRadius(64).
                 }
             }
         }
-    }
-
+    }*/
     .
 
 /**
@@ -276,7 +295,7 @@ patrollingRadius(64).
         +task_priority("TASK_ATTACK", 1000);
         +task_priority("TASK_RUN_AWAY", 1500);
         +task_priority("TASK_GOTO_POSITION", 750);
-        +task_priority("TASK_PATROLLING", 500);
+        +task_priority("TASK_PATROLLING", 3000);
         +task_priority("TASK_WALKING_PATH", 750).   
 
 

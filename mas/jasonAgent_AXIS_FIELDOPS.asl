@@ -147,6 +147,8 @@ patrollingRadius(300).
  */
 +!perform_look_action 
   <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR PERFORM_LOOK_ACTION GOES HERE.") }
+    ?current_task(task(C_priority, X, _, _, _));
+    .println("xddddd1 -> ",X);
 
     ?my_position(X, Y, Z);
 

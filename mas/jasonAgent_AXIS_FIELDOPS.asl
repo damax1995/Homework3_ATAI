@@ -147,19 +147,18 @@ patrollingRadius(300).
  */
 +!perform_look_action 
   <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR PERFORM_LOOK_ACTION GOES HERE.") }
-    ?current_task(task(C_priority, X, _, _, _));
-    .println("xddddd1 -> ",X);
 
     ?my_position(X, Y, Z);
-
-    .my_name(MyName);
     .my_team("medic_AXIS",E);
-    .my_team("fieldops_ALLIED",A);
     .nth(0, E, AgE);
-    .nth(0, A, AgA);
     .concat("goto(",X,", ", Y, ", ", Z, ")", Content1);
     .send_msg_with_conversation_id(AgE, tell, Content1, "INT");
-    .send_msg_with_conversation_id(AgA, tell, Content1, "INT");
+
+    .my_team("ALLIED",E1);
+    .nth(0, E1, AgA);
+    .concat("goto(",X,", ", Y, ", ", Z, ")", Content2);
+    .send_msg_with_conversation_id(AgA, tell, Content2, "INT");
+
 
    /* +position(invalid);
         while (position(invalid)) {

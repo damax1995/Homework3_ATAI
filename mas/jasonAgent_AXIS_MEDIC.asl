@@ -312,7 +312,6 @@ patrollingRadius(64).
 +goto(Xag,Yag,Zag)[source(A)] 
   <-
   .println("Recibido mensaje goto de ", A);
-  .my_name(MyName);
   !add_task(task("TASK_GOTO_POSITION",A,pos(Xag,Yag,Zag),""));
   -+state(standing);
   -goto(_,_,_).

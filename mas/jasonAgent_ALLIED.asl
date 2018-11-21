@@ -130,7 +130,9 @@ if (Length > 0) {
         if (AimedAgentTeam == 200) {
     
                 .nth(6, AimedAgent, NewDestination);
-                ?debug(Mode); if (Mode<=1) { .println("NUEVO DESTINO DEBERIA SER: ", NewDestination); }
+                ?debug(Mode); if (Mode<=1) { .println("NUEVO DESTINO DEBERIA SER: ", NewDestination);
+                update_destination(NewDestination); 
+                }
           
             }
  .
@@ -158,17 +160,7 @@ if (Length > 0) {
     ?flag(FlagX, FlagY, FlagZ);
     !distance( pos(X, Y, Z), pos(FlagX, FlagY, FlagZ));
     ?distance(D);
-    ?objectivePackTaken(K);
-    if(K == off){
-      .println("DISTANCIA A LA BANDERA: ", D);
-    }
-    else{
-      .println("DISTANCIA A LA BANDERA: 0");
-    }
-    
-    if(D < 1){
-      -+objectivePackTaken(on);
-    }
+    .println("DISTANCIA A LA BANDERA: ", D);
 
     //calculo de la distancia hasta la base
     ?base(BX, BY, BZ);
@@ -210,10 +202,10 @@ if (Length > 0) {
         +task_priority("TASK_GIVE_AMMOPAKS", 0);
         +task_priority("TASK_GIVE_BACKUP", 0);
         +task_priority("TASK_GET_OBJECTIVE",1000);
-        +task_priority("TASK_ATTACK", 1000);
+        +task_priority("TASK_ATTACK", 1500);
         +task_priority("TASK_RUN_AWAY", 1500);
-        +task_priority("TASK_GOTO_POSITION", 750);
-        +task_priority("TASK_PATROLLING", 500);
+        +task_priority("TASK_GOTO_POSITION", 1750);
+        +task_priority("TASK_PATROLLING", 1200);
         +task_priority("TASK_WALKING_PATH", 1750).   
 
 
@@ -336,7 +328,12 @@ if (Length > 0) {
    <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR cfa_refuse GOES HERE.")};
       -cfa_refuse.  
 
-
++goto(Xag,Yag,Zag)[source(A)] 
+  <-
+  .println("Recibido mensaje goto de ", A);
+  !add_task(task("TASK_GOTO_POSITION",A,pos(Xag,Yag,Zag),""));
+  -+state(standing);
+  -goto(_,_,_).
 
 /////////////////////////////////
 //  Initialize variables
@@ -347,7 +344,7 @@ if (Length > 0) {
    ?my_position(X, Y, Z);
     +base(X, Y, Z);
     ?objective_position(FlagX, FlagY, FlagZ);
-    +flag(FlagX,FlagY,FlagZ);
-    +objectivePackTaken(off);.
+    +flag(FlagX,FlagY,FlagZ);.
+
 
 

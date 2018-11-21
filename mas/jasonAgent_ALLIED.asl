@@ -125,7 +125,12 @@ if (Length > 0) {
         .nth(1, AimedAgent, AimedAgentTeam);
         ?debug(Mode); if (Mode<=2) { .println("BAJO EL PUNTO DE MIRA TENGO A ALGUIEN DEL EQUIPO ", AimedAgentTeam);             }
         ?my_formattedTeam(MyTeam);
-
+        
+        .nth(6, AimedAgent, posAg);
+        //?current_task(task(C_priority, _, _, _, _));
+        //?my_name(name);
+        //?my_position(X, Y, Z);
+        //!add_task(task(C_priority + 1, "TASK_ATTACK", name, posAg, ""));
 
         if (AimedAgentTeam == 200) {
     
